@@ -24,7 +24,7 @@ def get_gdp_data():
     # Instead of a CSV on disk, you could read from an HTTP endpoint here too.
     DATA_FILENAME = Path(__file__).parent/'data/tracker.csv'
     tracker_df = pd.read_csv(DATA_FILENAME)
-
+    return tracker_df
 # -----------------------------------------------------------------------------
 # Draw the actual page
 
@@ -40,6 +40,7 @@ But it's otherwise a great (and did I mention _free_?) source of data.
 # Add some spacing
 ''
 ''
+get_gdp_data()
 
 min_value = tracker_df['Maand'].min()
 max_value = tracker_df['Maand'].max()
