@@ -40,7 +40,7 @@ But it's otherwise a great (and did I mention _free_?) source of data.
 # Add some spacing
 ''
 ''
-get_gdp_data()
+tracker_df = get_gdp_data()
 
 min_value = tracker_df['Maand'].min()
 max_value = tracker_df['Maand'].max()
