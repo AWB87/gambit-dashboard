@@ -23,9 +23,9 @@ def get_gdp_data():
     """
 
     # Instead of a CSV on disk, you could read from an HTTP endpoint here too.
-    DATA_FILENAME = Path(__file__).parent/'data/tracker.csv'
+    DATA_FILENAME = Path(__file__).parent/'data/tracker2.csv'
     df = pd.read_csv(DATA_FILENAME)
-    df["Month"] = df["Month"].apply(lambda x: parse(x))
+    df["Maand"] = df["Date"].apply(lambda x: parse(x))
     
     return df
 # -----------------------------------------------------------------------------
