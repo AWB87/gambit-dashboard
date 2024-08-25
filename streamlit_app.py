@@ -42,6 +42,7 @@ But it's otherwise a great (and did I mention _free_?) source of data.
 ''
 tracker_df = get_gdp_data()
 import datetime
+print(tracker_df)
 tracker_df['Maand'] = pd.to_datetime(tracker_df['Maand'])
 min_value = tracker_df['Maand'].min()
 max_value = tracker_df['Maand'].max()
