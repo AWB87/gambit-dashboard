@@ -68,7 +68,7 @@ st.header('Channelization BSR over time', divider='gray')
 ''
 
 st.line_chart(
-    filtered_tracker_df,
+    tracker_df,
     x='Maand',
     y='BSR_hoog',
 )
