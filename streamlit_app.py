@@ -13,8 +13,18 @@ st.set_page_config(
 # Declare some useful functions.
 
 @st.cache_data
-DATA_FILENAME = Path(__file__).parent/'data/tracker.csv'
-tracker_df = pd.read_csv(DATA_FILENAME)
+def get_gdp_data():
+    """Grab GDP data from a CSV file.
+
+    This uses caching to avoid having to read the file every time. If we were
+    reading from an HTTP endpoint instead of a file, it's a good idea to set
+    a maximum age to the cache with the TTL argument: @st.cache_data(ttl='1d')
+    """
+
+    # Instead of a CSV on disk, you could read from an HTTP endpoint here too.
+    DATA_FILENAME = Path(__file__).parent/'data/tracker.csv'
+    tracker_df = pd.read_csv(DATA_FILENAME)
+return tracker_df
 # -----------------------------------------------------------------------------
 # Draw the actual page
 
@@ -30,7 +40,10 @@ But it's otherwise a great (and did I mention _free_?) source of data.
 # Add some spacing
 ''
 ''
-print(tracker_df.columns())
+tracker_df = get_gdp_data()
+import datetime
+print(tracker_df)
+tracker_df['Maand'] = pd.to_datetime(tracker_df['Maand'])
 min_value = tracker_df['Maand'].min()
 max_value = tracker_df['Maand'].max()
 
