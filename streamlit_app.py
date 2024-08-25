@@ -1,7 +1,8 @@
 import streamlit as st
 import pandas as pd
 import math
-from dateutil.parser import parse
+import datetime
+
 from pathlib import Path
 
 # Set the title and favicon that appear in the Browser's tab bar.
@@ -25,8 +26,7 @@ def get_gdp_data():
     # Instead of a CSV on disk, you could read from an HTTP endpoint here too.
     DATA_FILENAME = Path(__file__).parent/'data/tracker2.csv'
     df = pd.read_csv(DATA_FILENAME)
-    df["Maand"] = df["Date"].apply(lambda x: parse(x))
-    
+    df["Maand"] = pd.to_datetime(df["Date"])    
     return df
 # -----------------------------------------------------------------------------
 # Draw the actual page
@@ -44,8 +44,6 @@ But it's otherwise a great (and did I mention _free_?) source of data.
 ''
 ''
 tracker_df = get_gdp_data()
-import datetime
-print(tracker_df.columns())
 
 min_value = tracker_df['Maand'].min()
 max_value = tracker_df['Maand'].max()
